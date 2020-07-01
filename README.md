@@ -4,9 +4,10 @@ Tested with Docker for Mac + [nginx ingress](https://kubernetes.github.io/ingres
 
 To test
 
-- Ensure you are in the Docker Desktop context and default namespace
-- `k config set-context docker-desktop --namespace=default`
+- Ensure you have a Kube cluster setup in DFM or whatever, and are in the correct context and namespace, eg `k config set-context docker-desktop --namespace=default`
 - Start it up with Skaffold: `skaffold dev`
 - Visit `http://localhost`
-- Subsequent refreshes should show you Variation A and Variation B
-- You can control the weighting in `kustomize/services/variation-b/ingress.yaml` by changing `nginx.ingress.kubernetes.io/canary-weight` annotation to some percentage
+- You should see `Variation A`
+- Subsequent refreshes should show you only Variation A
+- Bring the Canary up to 50% by applying Variation B's canary-50 overlay `kustomize build kustomize/services/variation-b/canary-50 | k apply --context=docker-desktop -f -`
+- Subsequent refreshes should show you both Variation A and Variation B. Note there is no session affinity so each refresh is a roll of the die
