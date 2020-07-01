@@ -1,0 +1,14 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: variation-b
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: variation-b
+          image: variation-b
+          ports:
+            - name: http
+              containerPort: 80

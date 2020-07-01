@@ -1,0 +1,6 @@
+commonLabels:
+  app: variation-b
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml

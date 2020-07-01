@@ -1,0 +1,19 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+    - image: variation-a
+    - image: variation-b
+      docker:
+        buildArgs:
+          variation: b
+deploy:
+  kustomize:
+    path: kustomize/services
+portForward:
+  - resourceType: deployment
+    resourceName: variation-a
+    port: 80
+  - resourceType: deployment
+    resourceName: variation-b
+    port: 80
