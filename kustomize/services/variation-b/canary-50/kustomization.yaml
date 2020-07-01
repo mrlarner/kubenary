@@ -1,0 +1,6 @@
+commonLabels:
+  app: variation-b
+bases:
+  - ../base
+patches:
+  - canary-ingress-weighted-50.yaml

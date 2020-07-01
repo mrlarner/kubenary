@@ -4,3 +4,5 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+patches:
+  - canary-ingress-weighted-0.yaml
